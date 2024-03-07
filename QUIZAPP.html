@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    h1, h2 {
+        margin-bottom: 20px;
+    }
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+    input[type="submit"] {
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Quiz App</h1>
+    <form id="quizForm">
+        <h2>Question 1: What is the capital of France?</h2>
+        <input type="radio" name="q1" value="Paris"> Paris<br>
+        <input type="radio" name="q1" value="London"> London<br>
+        <input type="radio" name="q1" value="Rome"> Rome<br>
+        <input type="radio" name="q1" value="Berlin"> Berlin<br>
+
+        <h2>Question 2: Who wrote 'To Kill a Mockingbird'?</h2>
+        <input type="radio" name="q2" value="J.K. Rowling"> J.K. Rowling<br>
+        <input type="radio" name="q2" value="Harper Lee"> Harper Lee<br>
+        <input type="radio" name="q2" value="George Orwell"> George Orwell<br>
+        <input type="radio" name="q2" value="Ernest Hemingway"> Ernest Hemingway<br>
+
+        <h2>Question 3: What is the chemical symbol for water?</h2>
+        <input type="radio" name="q3" value="H2O"> H2O<br>
+        <input type="radio" name="q3" value="CO2"> CO2<br>
+        <input type="radio" name="q3" value="NaCl"> NaCl<br>
+        <input type="radio" name="q3" value="O2"> O2<br>
+
+        <h2>Question 4: Which planet is known as the Red Planet?</h2>
+        <input type="radio" name="q4" value="Jupiter"> Jupiter<br>
+        <input type="radio" name="q4" value="Mars"> Mars<br>
+        <input type="radio" name="q4" value="Saturn"> Saturn<br>
+        <input type="radio" name="q4" value="Venus"> Venus<br>
+
+        <h2>Question 5: What is the largest mammal in the world?</h2>
+        <input type="radio" name="q5" value="Blue Whale"> Blue Whale<br>
+        <input type="radio" name="q5" value="Elephant"> Elephant<br>
+        <input type="radio" name="q5" value="Giraffe"> Giraffe<br>
+        <input type="radio" name="q5" value="Hippopotamus"> Hippopotamus<br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<script>
+    document.getElementById('quizForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var userAnswers = [];
+        var correctAnswers = ['Paris', 'Harper Lee', 'H2O', 'Mars', 'Blue Whale'];
+
+        for (var i = 1; i <= 5; i++) {
+            var selectedOption = document.querySelector('input[name="q' + i + '"]:checked');
+            if (selectedOption) {
+                userAnswers.push(selectedOption.value);
+            } else {
+                alert('Please answer all questions.');
+                return;
+            }
+        }
+
+        var score = 0;
+        for (var j = 0; j < correctAnswers.length; j++) {
+            if (userAnswers[j] === correctAnswers[j]) {
+                score++;
+            }
+        }
+
+        var percentage = (score / correctAnswers.length) * 100;
+        alert('Quiz Results:\n\nYou got ' + score + ' out of ' + correctAnswers.length + ' questions correct.\nYour score: ' + percentage + '%');
+    });
+</script>
+
+</body>
+</html>
